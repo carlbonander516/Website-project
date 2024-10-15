@@ -1,0 +1,43 @@
+<div id="principal">
+    <div class="modify-container">
+        {{#if serie.sid}} <h1>Modify Series</h1> {{else}} <h1>New Series</h1> {{/if}}
+
+        <form action="{{#if serie.sid}}/serie/modify/{{serie.sid}}{{else}}/serie/new{{/if}}" method="POST">
+            <div class="form-group">
+                <label for="seriename">Name:</label>
+                <input type="text" id="seriename" name="seriename" required="required" 
+                {{#if serie.sname}} value="{{serie.sname}}" {{/if}}>
+            </div>
+
+            <div class="form-group">
+                <label for="serieyear">Year:</label>
+                <input type="number" id="serieyear" name="serieyear" min="1900" max="2050" required="required" 
+                {{#if serie.sreleasedate}} value="{{serie.sreleasedate}}" {{/if}}>
+            </div>
+
+            <div class="form-group">
+                <label for="seriecategory">Category:</label>
+                <select name="seriecategory" id="seriecategory" required="required">
+                    {{#each categories}}
+                        <option value="{{this.cid}}" {{#if (eq this.cid ../serie.scategory)}}selected="selected"{{/if}}>{{this.cname}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="serieurl">Image URL:</label>
+                <input type="text" id="serieurl" name="serieurl" placeholder="something.png" required="required" 
+                {{#if serie.simgURL}} value="{{serie.simgURL}}" {{/if}}>
+            </div>
+
+            <div class="form-group">
+                <label for="seriedesc">Description:</label>
+                <textarea id="seriedesc" name="seriedesc" placeholder="Write your description here..." rows="4" required="required">{{#if serie.sdesc}}{{serie.sdesc}}{{/if}}</textarea>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="{{#if serie.sid}}Modify Series{{else}}Create New Series{{/if}}" class="btn-primary">
+            </div>
+        </form>
+    </div>
+</div>

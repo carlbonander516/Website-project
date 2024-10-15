@@ -1,0 +1,12 @@
+<h1>Modify User</h1>
+<!-- Modifying user -->
+<form action="/user/modify/{{user.id}}" method="POST">
+  <label for="username">New Username:</label>
+  <input type="text" id="username" name="username" value="{{user.username}}" required><br />
+  
+  <label for="password">New Password:</label>
+  <input type="password" id="password" name="password" required><br />  <!-- Changed to password type -->
+  
+  <input type="submit" value="Update">
+</form>
+<a href="/users">Cancel</a>

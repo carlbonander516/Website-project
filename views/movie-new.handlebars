@@ -1,0 +1,43 @@
+<div id="principal">
+    <div class="modify-container">
+        {{#if movie.mid}} <h1>Modify Movie</h1> {{else}} <h1>New Movie</h1> {{/if}}
+
+        <form action="{{#if movie.mid}}/movie/modify/{{movie.mid}}{{else}}/movie/new{{/if}}" method="POST">
+            <div class="form-group">
+                <label for="moviename">Name:</label>
+                <input type="text" id="moviename" name="moviename" required="required" 
+                {{#if movie.mname}} value="{{movie.mname}}" {{/if}}>
+            </div>
+
+            <div class="form-group">
+                <label for="movieyear">Year:</label>
+                <input type="number" id="movieyear" name="movieyear" min="1800" max="2050" required="required" 
+                {{#if movie.mreleasedate}} value="{{movie.mreleasedate}}" {{/if}}>
+            </div>
+
+            <div class="form-group">
+                <label for="moviecategory">Category:</label>
+                <select name="moviecategory" id="moviecategory" required="required">
+                    {{#each categories}}
+                        <option value="{{this.cid}}" {{#if (eq this.cid ../movie.mcategory)}}selected="selected"{{/if}}>{{this.cname}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="movieurl">Image URL:</label>
+                <input type="text" id="movieurl" name="movieurl" placeholder="something.png" required="required" 
+                {{#if movie.mimgURL}} value="{{movie.mimgURL}}" {{/if}}>
+            </div>
+
+            <div class="form-group">
+                <label for="moviedesc">Description:</label>
+                <textarea id="moviedesc" name="moviedesc" placeholder="Write your description here..." rows="4" required="required">{{#if movie.mdesc}}{{movie.mdesc}}{{/if}}</textarea>
+            </div>
+
+            <div class="form-actions">
+                <input type="submit" value="{{#if movie.mid}}Modify Movie{{else}}Create New Movie{{/if}}" class="btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

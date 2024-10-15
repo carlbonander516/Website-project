@@ -1,0 +1,26 @@
+{
+  "name": "webproject",
+  "version": "1.0.0",
+  "description": "Project within Web Development Fundamentals",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "Handlebars",
+    "SQLite3"
+  ],
+  "author": "Carl Bonander",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "connect-sqlite3": "^0.9.15",
+    "express": "^4.21.0",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.0",
+    "sqlite3": "^5.1.7"
+  }
+}

@@ -1,0 +1,43 @@
+<div id="principal">
+    <div class="series-container">
+        <h1>Series</h1>
+        <!-- Enables admin to create a new serie -->
+        {{#if session.isAdmin}}
+            <div><a href="/serie/new" class="btn-new-series">New Series</a></div>
+        {{/if}}
+
+        <div id="series-list" class="movie-list">
+            {{#each series}}
+            <!-- Displaying series -->
+                <a href="/information/series/{{sid}}" class="series-link">
+                    <div class="movie-item">
+                        <img src="/img/{{simgURL}}" alt="{{sname}}">
+                        <h4>{{sname}}</h4>
+                        <!-- Allows admin to modify or delete serie -->
+                        {{#if ../session.isAdmin}}
+                            <div class="admin-controls">
+                                <a href="/serie/modify/{{sid}}" class="modify">Modify</a>
+                                <a href="/serie/delete/{{sid}}" class="delete">Delete</a>
+                            </div>
+                        {{/if}}
+                    </div>
+                </a>
+            {{/each}}
+        </div>
+
+        <!-- Pagination Controls, Code below: Source: (ChatGPT, 2024, "Create a dynamic pagination system, https://chatgpt.com/") -->
+        <div class="pagination">
+            {{#if (gt currentPage 1)}}
+                <a href="?page={{subtract currentPage 1}}">Previous</a>
+            {{/if}}
+
+            {{#each (range 1 totalPages)}}
+                <a href="?page={{this}}" class="{{#if (eq this ../currentPage)}}active{{/if}}">{{this}}</a>
+            {{/each}}
+
+            {{#if (lt currentPage totalPages)}}
+                <a href="?page={{add currentPage 1}}">Next</a>
+            {{/if}}
+        </div>
+    </div>
+</div>

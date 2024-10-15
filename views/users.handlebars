@@ -1,0 +1,13 @@
+{{#each users}}
+  <p>ID: {{this.id}}</p>
+  <p>Username: {{this.username}}</p>
+  <p>Hashed password: {{this.passwordHash}}</p>
+  
+  <!-- Link to modify user -->
+  <a href="/user/modify/{{this.id}}">Modify</a>
+  
+  <!-- Link to delete user -->
+  <a href="/user/delete/{{this.id}}">Delete</a>
+  
+  <hr> <!-- Separator line between users -->
+{{/each}}

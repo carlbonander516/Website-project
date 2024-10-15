@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="topnav" id="navbar">
+    <a class="active" href="/">Home</a>
+    <a href="/series">Series</a>
+    <a href="/movies">Movies</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/register">Register</a>
+    {{#if session.isAdmin}}
+      <a href="/users">Users</a>
+    {{/if}}
+    <input type="text" placeholder="Search">
+    
+    {{#if session.isLoggedIn}}
+    <span id="menulogin">Hi, {{session.username}}<a href="/logout">Logout</a></span>
+    {{else}}
+    <a id="menulogin" href="/login">Login</a>
+    {{/if}}
+  </div>
+
+  <!-- This is where the specific view content will be injected -->
+  {{{body}}}
+</body>
+</html>

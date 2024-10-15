@@ -1,0 +1,43 @@
+<div class="movies">
+    <!-- Enables only admin to create new movie -->
+    {{#if session.isAdmin}}
+        <div><a href="/movie/new" class="btn-new-series">New movie</a></div>
+    {{/if}}
+    
+    <div class="carousel-wrapper">
+        <!-- Displaying movies -->
+        <div id="movie-list" class="movie-list">
+            {{#each movies}}
+            <!-- Redirects to the information page about the movie -->
+                <a href="/information/movies/{{mid}}" class="movie-link">
+                    <div class="movie-item">
+                        <img src="/img/{{mimgURL}}" alt="{{mname}}">
+                        <h4>{{mname}}</h4> <!-- Moved this below the image -->
+                        <!-- Admin can modify or delete movie -->
+                        {{#if ../session.isAdmin}}
+                            <div class="admin-controls">
+                                <a href="/movie/modify/{{mid}}" class="modify">modify</a>
+                                <a href="/movie/delete/{{mid}}" class="delete">delete</a>
+                            </div>
+                        {{/if}}
+                    </div>
+                </a>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- Pagination Controls, Code below: Source: (ChatGPT, 2024, "Create a dynamic pagination system, https://chatgpt.com/") -->
+    <div class="pagination">
+        {{#if (gt currentPage 1)}}
+            <a href="?page={{subtract currentPage 1}}">Previous</a>
+        {{/if}}
+
+        {{#each (range 1 totalPages)}}
+            <a href="?page={{this}}" class="{{#if (eq this ../currentPage)}}active{{/if}}">{{this}}</a>
+        {{/each}}
+
+        {{#if (lt currentPage totalPages)}}
+            <a href="?page={{add currentPage 1}}">Next</a>
+        {{/if}}
+    </div>
+</div>

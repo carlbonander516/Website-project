@@ -1,0 +1,15 @@
+<div class="movies">
+    <article class="movie-item">
+        <div class="movieinfo">
+            <h2>{{serie.sname}}</h2> <!-- Use a heading for better semantics -->
+            <p>{{serie.syear}} // {{serie.scategory}}</p> <!-- Use <p> for paragraphs -->
+        </div>
+        <div class="divimage">
+            {{#if serie.simgURL}} <!-- Conditional check for the image URL -->
+                <img src="{{serie.simgURL}}" alt="{{serie.sname}} image" class="bigimage" />
+            {{else}}
+                <p>No image available</p> <!-- Fallback if no image URL -->
+            {{/if}}
+        </div>
+    </article>
+</div>
